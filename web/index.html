@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bot Fleet · локальная панель</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">✳</span><span><b>BOT FLEET</b><small>LOCAL CONTROL PLANE</small></span></a>
+      <div class="side-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <a class="nav active" href="#overview"><span>◫</span> Обзор</a>
+      <a class="nav" href="#inventory"><span>▤</span> Каналы и боты</a>
+      <a class="nav" href="#diagnostics"><span>⌁</span> Диагностика</a>
+      <div class="side-bottom"><span class="secure-dot"></span><div><b>Локальный режим</b><small>Данные остаются на этом ПК</small></div></div>
+    </aside>
+    <main>
+      <header class="topbar"><div><div class="eyebrow">TELEGRAM OPERATIONS / LOCAL</div><h1>Обзор системы</h1></div><div class="top-right"><span class="live-pill"><i></i> LIVE</span><span class="avatar">TF</span></div></header>
+      <section class="hero" id="overview">
+        <div><div class="eyebrow">FLEET STATUS</div><h2>Контроль без лишнего шума.</h2><p>Инвентаризация и ручная диагностика Telegram-ботов и каналов.</p></div>
+        <div class="hero-orbit"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit-core">✳</div><span class="orbit-tag">LOCAL<br>ONLY</span></div>
+      </section>
+      <section class="stats">
+        <article class="stat"><div class="stat-top"><span>Каналы</span><span class="stat-icon">▤</span></div><strong id="channel-count">0</strong><small>в локальном реестре</small></article>
+        <article class="stat"><div class="stat-top"><span>Боты</span><span class="stat-icon purple">◉</span></div><strong id="bot-count">0</strong><small>метаданные без токенов</small></article>
+        <article class="stat"><div class="stat-top"><span>Bot API</span><span class="stat-icon green">⌁</span></div><strong id="api-status" class="status-word">Не проверен</strong><small id="api-detail">Проверка запускается вручную</small></article>
+        <article class="stat"><div class="stat-top"><span>Следующий слот</span><span class="stat-icon amber">◷</span></div><strong id="slot-timer">—</strong><small>диагностические запросы</small></article>
+      </section>
+      <section class="content-grid" id="inventory">
+        <article class="panel inventory-panel"><div class="panel-head"><div><div class="eyebrow">INVENTORY</div><h3>Каналы и боты</h3></div><button class="button ghost" id="refresh">↻ Обновить</button></div>
+          <div class="forms-row">
+            <form id="channel-form" class="mini-form"><div class="form-title">Добавить канал</div><label>Название<input name="title" placeholder="Мой канал" required maxlength="80"></label><label>ID или @username<input name="id" placeholder="@my_channel или -100…" required maxlength="128"></label><button class="button primary">＋ Сохранить канал</button></form>
+            <form id="bot-form" class="mini-form"><div class="form-title">Записать бота</div><label>Username<input name="username" placeholder="my_service_bot" required maxlength="80"></label><label>Канал<select name="channel_id" id="channel-select" required><option value="">Сначала добавьте канал</option></select></label><label>Заметка <span class="muted">необязательно</span><input name="note" placeholder="Назначение или владелец" maxlength="80"></label><button class="button primary">＋ Добавить в реестр</button></form>
+          </div>
+          <div class="list-head"><span>ЗАРЕГИСТРИРОВАННЫЕ КАНАЛЫ</span><span id="inventory-total">0 записей</span></div><div id="inventory-list" class="inventory-list"><div class="empty">Пока нет записей. Добавьте канал, чтобы начать.</div></div>
+        </article>
+        <article class="panel diagnostics" id="diagnostics"><div class="panel-head"><div><div class="eyebrow">SAFE CHECKS</div><h3>Диагностика</h3></div><span class="shield">⌑</span></div><p>По вашему запросу проверяет только доступность управляющего бота через Telegram Bot API <code>getMe</code>. Другие действия не выполняются.</p><div class="check-row"><span class="check-icon">✓</span><div><b>Ограниченный доступ</b><small>Только loopback · PIN для API (если задан)</small></div></div><div class="check-row"><span class="check-icon">✓</span><div><b>Секреты не выводятся</b><small>Токены не хранятся в реестре</small></div></div><button id="diagnose" class="button primary full">Проверить Bot API <span>→</span></button><div id="diagnose-result" class="result-note">Готов к проверке</div></article>
+      </section>
+      <section class="panel console-panel"><div class="panel-head"><div><div class="eyebrow">EVENT STREAM</div><h3>Системная консоль</h3></div><div class="console-state"><i></i> WebSocket</div></div><div id="console" class="console"><div class="console-line"><span class="time">--:--:--</span><span class="log-info">Ожидание событий…</span></div></div></section>
+      <footer><span>tg-bot-orchestrator <b>0.1.0</b></span><span>Собрано для локальной диагностики</span></footer>
+    </main>
+  </div><script src="/app.js"></script>
+</body></html>

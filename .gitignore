@@ -1,0 +1,11 @@
+.env
+*.session
+*.session-journal
+data/
+logs/
+.venv/
+wheels/*.whl
+__pycache__/
+.pytest_cache/
+.coverage
+*.py[cod]
